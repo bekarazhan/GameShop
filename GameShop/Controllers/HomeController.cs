@@ -16,7 +16,7 @@ namespace GameShop.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Redirect("Games");
         }
 
         public IActionResult Privacy()

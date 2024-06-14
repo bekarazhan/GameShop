@@ -9,7 +9,8 @@ namespace GameShop.Data
         public MappingProfile()
         {
             CreateMap<Game, GameVm>();
-            CreateMap<GameVm, Game>();
+            CreateMap<GameVm, Game>()
+                .ForMember(x => x.Description, opt => opt.Ignore()).ReverseMap();
         }
     }
 }

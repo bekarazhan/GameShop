@@ -1,4 +1,5 @@
-﻿using GameShop.Models.ViewModels;
+﻿using GameShop.Models.Filters;
+using GameShop.Models.ViewModels;
 
 namespace GameShop.Interfaces
 {
@@ -6,7 +7,7 @@ namespace GameShop.Interfaces
     {
         Task DeleteGame(int id);
         Task<GameVm> CreateGame(GameVm gameVm);
-        Task<List<GameVm>> GetAllGames();
+        Task<List<GameVm>> GetAllGames(GamesRequestFilter? filter=null);
         Task UpdateGame(GameVm gameVm);
         Task<GameVm> GetGameById(int id);
 

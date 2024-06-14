@@ -1,6 +1,7 @@
 ﻿
 using GameShop.Interfaces;
 using GameShop.Models;
+using GameShop.Models.Filters;
 using GameShop.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +15,10 @@ namespace GameShop.Controllers
         public GamesController(IGamesService gamesService) {
             _gamesService = gamesService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(GamesRequestFilter? filter = null)
         {
-            var games =  await _gamesService.GetAllGames();
+
+            var games =  await _gamesService.GetAllGames(filter);
             return View(games);
         }
 
@@ -36,7 +38,13 @@ namespace GameShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _gamesService.CreateGame(game);
+                try
+                {
+                    await _gamesService.CreateGame(game);
+                }
+                catch (Exception ex) { 
+                    
+                }
                 return RedirectToAction("Index");
             }
                 return View(game);
@@ -57,6 +65,8 @@ namespace GameShop.Controllers
             return View(gameToDelete);
         }
 
+        [HttpPost, ActionName("Update")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateConfirmed(GameVm gameVm) {
             await _gamesService.UpdateGame(gameVm);
             return RedirectToAction("Index");

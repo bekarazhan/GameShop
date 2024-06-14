@@ -1,10 +1,54 @@
-﻿
+﻿@model IEnumerable<GameShop.Models.ViewModels.GameVm>
 @{
     ViewData["Title"] = "Games Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 
- 
-</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                <a href="@Url.Action("Index", new { SortingType = "price" })">
+                <
+                </a>
+                @Html.DisplayNameFor(model => model.Price)
+                <a href="@Url.Action("Index", new { SortingType = "price_desc" })">
+                    >
+                </a>
+            </th>
+            <th>
+                <div>
+                    <a href="@Url.Action("Index", new { SortingType = "name" })">Sort by Title (A-Z)</a> |
+                    <a href="@Url.Action("Index", new { SortingType = "name_desc" })">Sort by Title (Z-A)</a>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Update", "Update", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

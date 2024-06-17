@@ -12,5 +12,7 @@ namespace GameShop.Repositories
         {
             _context = context;
         }
+
+
     }
 }

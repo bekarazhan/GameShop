@@ -8,6 +8,8 @@ namespace GameShop.Models.Entities
         public string Name { get; set; }
         public float Price { get; set; }
         public string? Description { get; set; } = string.Empty;
+        public virtual int? GenreId { get; set; }
+        public virtual Genre Genre { get; set; }
 
     }
 }

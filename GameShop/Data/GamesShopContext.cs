@@ -6,6 +6,7 @@ namespace GameShop.Data
     public class GamesShopContext:DbContext
     {
         public DbSet<Game> Games { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

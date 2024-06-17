@@ -4,6 +4,7 @@ using GameShop.Models;
 using GameShop.Models.Filters;
 using GameShop.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -12,8 +13,11 @@ namespace GameShop.Controllers
     public class GamesController : Controller
     {
         private readonly IGamesService _gamesService;
-        public GamesController(IGamesService gamesService) {
+        private readonly IGenresService _genresService;
+        public GamesController(IGamesService gamesService, IGenresService genresService)
+        {
             _gamesService = gamesService;
+            _genresService = genresService;
         }
         public async Task<IActionResult> Index(GamesRequestFilter? filter = null)
         {
@@ -29,6 +33,7 @@ namespace GameShop.Controllers
 
         public async Task<IActionResult> Create()
         {
+            ViewBag.GenreId = new SelectList(await _genresService.GetAllGenres(), "Id", "Name");
             return View();
         }
 
@@ -78,6 +83,7 @@ namespace GameShop.Controllers
             {
                 return NotFound();
             }
+            ViewBag.GenreId = new SelectList(await _genresService.GetAllGenres(), "Id", "Name");
             return View(gameToUpdate);
         }
 

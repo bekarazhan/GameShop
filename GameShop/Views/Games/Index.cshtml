@@ -1,8 +1,4 @@
 ﻿@model IEnumerable<GameShop.Models.ViewModels.GameVm>
-@{
-    ViewData["Title"] = "Games Page";
-}
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -25,6 +21,9 @@
                 </a>
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.GenreName)
+            </th>
+            <th>
                 <div>
                     <a href="@Url.Action("Index", new { SortingType = "name" })">Sort by Title (A-Z)</a> |
                     <a href="@Url.Action("Index", new { SortingType = "name_desc" })">Sort by Title (Z-A)</a>
@@ -41,6 +40,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreName)
                 </td>
                 <td>
                     @Html.ActionLink("Update", "Update", new { id = item.Id }) |

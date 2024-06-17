@@ -13,7 +13,8 @@ builder.Services.AddScoped<IGamesService, GamesService>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<GamesShopContext>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
+builder.Services.AddScoped<IGenresRepository, GenresRepository>();
+builder.Services.AddScoped<IGenresService, GenresService>();
 
 var app = builder.Build();
 

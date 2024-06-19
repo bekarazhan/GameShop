@@ -12,7 +12,7 @@ namespace GameShop.Repositories
         {
             _context = context;
         }
-
+        //some specific request to database
 
     }
 }

@@ -15,6 +15,7 @@ builder.Services.AddScoped<GamesShopContext>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IGenresRepository, GenresRepository>();
 builder.Services.AddScoped<IGenresService, GenresService>();
+builder.Services.AddHostedService<GamePriceBackgroundService>();
 
 var app = builder.Build();
 

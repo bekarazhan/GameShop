@@ -11,5 +11,14 @@ namespace GameShop.Models.Entities
         public virtual int? GenreId { get; set; }
         public virtual Genre Genre { get; set; }
 
+        //public virtual IEnumerable<Platform> Platfroms { get; set; }
+
+        
     }
+
+    //public class Platform:BaseEntity {
+    
+    //    public string Name { get; set; }
+    //    public virtual IEnumerable<Game> Games { get; set; }
+    //}
 }
